@@ -9,7 +9,7 @@ ENV UV_LINK_MODE=copy
 
 FROM base AS builder
 
-COPY pyproject.toml ./
+COPY pyproject.toml README.md ./
 RUN uv sync --no-dev --no-install-project
 
 COPY src ./src
