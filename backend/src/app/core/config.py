@@ -14,6 +14,8 @@ class Settings(BaseSettings):
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
+    dummyjson_base_url: str = "https://dummyjson.com"
+    dummyjson_timeout_seconds: float = 30.0
 
     @field_validator("cors_origins", mode="before")
     @classmethod

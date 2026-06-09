@@ -4,6 +4,9 @@ from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.application.interfaces.unit_of_work import UnitOfWork
+from app.application.services.sync_service import SyncService
+from app.core.config import Settings, get_settings
+from app.infrastructure.external.dummyjson_client import DummyJsonClient
 from app.infrastructure.persistence.database import get_session
 from app.infrastructure.unit_of_work.sqlalchemy_unit_of_work import SqlAlchemyUnitOfWork
 
@@ -18,3 +21,17 @@ async def get_uow(
     except Exception:
         await uow.rollback()
         raise
+
+
+def get_dummyjson_client(settings: Settings = Depends(get_settings)) -> DummyJsonClient:
+    return DummyJsonClient(
+        base_url=settings.dummyjson_base_url,
+        timeout=settings.dummyjson_timeout_seconds,
+    )
+
+
+def get_sync_service(
+    uow: UnitOfWork = Depends(get_uow),
+    client: DummyJsonClient = Depends(get_dummyjson_client),
+) -> SyncService:
+    return SyncService(uow=uow, client=client)
