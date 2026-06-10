@@ -7,7 +7,7 @@ from app.presentation.schemas.sync.response import SyncResponse
 router = APIRouter()
 
 
-@router.post("/sync", response_model=SyncResponse)
+@router.get("/sync", response_model=SyncResponse)
 async def sync_data(
     service: SyncService = Depends(get_sync_service),
 ) -> SyncResponse:
