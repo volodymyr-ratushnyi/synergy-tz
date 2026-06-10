@@ -1,0 +1,119 @@
+@use "@/shared/styles/variables" as *;
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $color-bg-white;
+
+  &__wrapper {
+    overflow-x: auto;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+  }
+
+  thead {
+    background-color: $color-bg-subtle;
+  }
+
+  th,
+  td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid $color-border;
+    font-size: 0.875rem;
+  }
+
+  th {
+    font-weight: 600;
+    color: $color-text-label;
+    white-space: nowrap;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background-color: $color-bg-hover;
+  }
+
+  &__sort-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &--active {
+      color: $color-primary;
+    }
+  }
+
+  &__sort-indicator {
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: flex-end;
+  }
+
+  &__empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: $color-text-muted;
+  }
+
+  &__expand-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background-color: $color-bg-white;
+    color: $color-text-secondary;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-primary-light;
+      color: $color-primary;
+    }
+
+    &--expanded {
+      background-color: $color-bg-expanded;
+      border-color: $color-primary-light;
+      color: $color-primary;
+    }
+  }
+
+  &__expanded-row td {
+    padding: 0;
+    background-color: $color-bg-expanded;
+  }
+
+  &__cell-muted {
+    color: $color-text-muted;
+  }
+
+  &__cell-truncate {
+    max-width: 16rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

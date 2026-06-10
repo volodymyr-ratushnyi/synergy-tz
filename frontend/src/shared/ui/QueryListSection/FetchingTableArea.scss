@@ -1,0 +1,23 @@
+@use "@/shared/styles/variables" as *;
+
+[class$="__table-area"],
+[class$="__cards-area"] {
+  position: relative;
+}
+
+[class$="__table-area--fetching"] > :not(.fetching-table-area__overlay),
+[class$="__cards-area--fetching"] > :not(.fetching-table-area__overlay) {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.fetching-table-area__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-bg-overlay;
+  border-radius: $radius-lg;
+}

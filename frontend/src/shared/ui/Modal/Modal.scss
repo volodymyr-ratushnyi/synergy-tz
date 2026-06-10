@@ -1,0 +1,46 @@
+@use "@/shared/styles/variables" as *;
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: $color-bg-modal-backdrop;
+
+  &__dialog {
+    width: 100%;
+    max-width: 560px;
+    background-color: $color-bg-white;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-modal;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  &__close {
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: $color-text-tertiary;
+    cursor: pointer;
+  }
+
+  &__body {
+    padding: 1.25rem;
+  }
+}

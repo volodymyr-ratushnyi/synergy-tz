@@ -1,0 +1,19 @@
+@use "@/shared/styles/variables" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  line-height: 1.5;
+  color: $color-text;
+  background-color: $color-bg;
+}
+
+#root {
+  min-height: 100vh;
+}

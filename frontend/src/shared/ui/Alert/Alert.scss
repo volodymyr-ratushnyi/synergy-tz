@@ -1,0 +1,39 @@
+@use "@/shared/styles/variables" as *;
+
+.alert {
+  padding: 1rem;
+  border-radius: $radius-lg;
+  margin-bottom: 1rem;
+
+  &--error {
+    background-color: $color-danger-bg;
+    border: 1px solid $color-danger-border;
+    color: $color-danger-text;
+  }
+
+  &--info {
+    background-color: $color-info-bg;
+    border: 1px solid $color-info-border;
+    color: $color-info-text;
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  &__message {
+    margin: 0;
+  }
+
+  &__retry {
+    margin-top: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid currentColor;
+    border-radius: $radius-md;
+    background: transparent;
+    color: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+}

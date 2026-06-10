@@ -1,5 +1,11 @@
 import { HomePage } from "@/pages/home";
 
+import { QueryProvider } from "./providers/QueryProvider";
+
 export function App() {
-  return <HomePage />;
+  return (
+    <QueryProvider>
+      <HomePage />
+    </QueryProvider>
+  );
 }

@@ -1,0 +1,61 @@
+@use "@/shared/styles/variables" as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-bg-white;
+
+    &:hover:not(:disabled) {
+      background-color: $color-primary-hover;
+    }
+  }
+
+  &--secondary {
+    background-color: $color-bg-white;
+    border-color: $color-border-input;
+    color: $color-text-label;
+
+    &:hover:not(:disabled) {
+      background-color: $color-bg-subtle;
+    }
+  }
+
+  &--danger {
+    background-color: $color-danger;
+    color: $color-bg-white;
+
+    &:hover:not(:disabled) {
+      background-color: $color-danger-hover;
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: $color-text-secondary;
+
+    &:hover:not(:disabled) {
+      background-color: $color-bg-hover;
+    }
+  }
+}

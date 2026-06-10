@@ -1,0 +1,21 @@
+@use "@/shared/styles/variables" as *;
+
+.edit-form {
+  &__grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__submit-error {
+    margin: 1rem 0 0;
+    color: $color-danger;
+    font-size: 0.875rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+}

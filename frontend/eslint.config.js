@@ -22,4 +22,53 @@ export default tseslint.config(
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     },
   },
+  {
+    files: ["src/entities/user/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["@/entities/post", "@/entities/post/*"],
+              message: "User entity must not depend on post entity.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["src/features/post/user-posts/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "@/features/post/edit-post",
+              importNames: ["PostEditSection"],
+              message: "Compose PostEditSection at widget/page level, not inside user-posts.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["src/shared/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["@/app/*", "@/pages/*", "@/widgets/*", "@/features/*", "@/entities/*"],
+              message: "Shared layer must not import from upper FSD layers.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 );

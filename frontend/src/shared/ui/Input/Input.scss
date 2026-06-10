@@ -1,0 +1,20 @@
+@use "@/shared/styles/variables" as *;
+
+.input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $color-border-input;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  background-color: $color-bg-white;
+
+  &:focus {
+    outline: 2px solid $color-primary-light;
+    outline-offset: 1px;
+    border-color: $color-primary;
+  }
+
+  &--error {
+    border-color: $color-danger;
+  }
+}
