@@ -3,7 +3,11 @@ from fastapi import APIRouter, Depends, Query, Response, status
 from app.application.dtos.pagination import PaginationParams
 from app.application.services.post_service import CreatePostData, PostService, UpdatePostData
 from app.core.dependencies import get_post_service
-from app.presentation.schemas.posts.request import CreatePostRequest, UpdatePostRequest
+from app.presentation.schemas.posts.request import (
+    CreatePostRequest,
+    PostSortField,
+    UpdatePostRequest,
+)
 from app.presentation.schemas.posts.response import (
     PaginatedPostsResponse,
     PostDetailResponse,
@@ -17,7 +21,7 @@ router = APIRouter()
 async def list_posts(
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
-    sort_by: str = Query("external_id"),
+    sort_by: PostSortField = Query(PostSortField.external_id),
     sort_order: str = Query("asc", pattern="^(asc|desc)$"),
     user_external_id: int | None = Query(None),
     service: PostService = Depends(get_post_service),
@@ -25,7 +29,7 @@ async def list_posts(
     params = PaginationParams(
         offset=offset,
         limit=limit,
-        sort_by=sort_by,
+        sort_by=sort_by.value,
         sort_order=sort_order,
     )
     result = await service.list_posts(params, user_external_id=user_external_id)

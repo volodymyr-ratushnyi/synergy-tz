@@ -3,7 +3,11 @@ from fastapi import APIRouter, Depends, Query, Response, status
 from app.application.dtos.pagination import PaginationParams
 from app.application.services.user_service import CreateUserData, UpdateUserData, UserService
 from app.core.dependencies import get_user_service
-from app.presentation.schemas.users.request import CreateUserRequest, UpdateUserRequest
+from app.presentation.schemas.users.request import (
+    CreateUserRequest,
+    UpdateUserRequest,
+    UserSortField,
+)
 from app.presentation.schemas.users.response import (
     PaginatedUsersResponse,
     UserDetailResponse,
@@ -17,14 +21,14 @@ router = APIRouter()
 async def list_users(
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
-    sort_by: str = Query("external_id"),
+    sort_by: UserSortField = Query(UserSortField.external_id),
     sort_order: str = Query("asc", pattern="^(asc|desc)$"),
     service: UserService = Depends(get_user_service),
 ) -> PaginatedUsersResponse:
     params = PaginationParams(
         offset=offset,
         limit=limit,
-        sort_by=sort_by,
+        sort_by=sort_by.value,
         sort_order=sort_order,
     )
     result = await service.list_users(params)

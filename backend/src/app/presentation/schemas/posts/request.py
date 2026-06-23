@@ -1,4 +1,13 @@
+from enum import Enum
+
 from pydantic import BaseModel, Field
+
+
+class PostSortField(str, Enum):
+    external_id = "external_id"
+    title = "title"
+    views = "views"
+    user_external_id = "user_external_id"
 
 
 class CreatePostRequest(BaseModel):

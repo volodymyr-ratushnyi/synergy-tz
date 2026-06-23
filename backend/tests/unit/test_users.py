@@ -45,6 +45,13 @@ async def test_list_users(client: AsyncClient) -> None:
 
 
 @pytest.mark.asyncio
+async def test_list_users_invalid_sort_by(client: AsyncClient) -> None:
+    response = await client.get("/api/v1/users?sort_by=not_a_field")
+
+    assert response.status_code == 422
+
+
+@pytest.mark.asyncio
 async def test_get_user_with_posts(client: AsyncClient) -> None:
     mock_service = AsyncMock(spec=UserService)
     mock_service.get_user.return_value = UserDetailDto(

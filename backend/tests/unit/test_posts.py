@@ -46,6 +46,13 @@ async def test_get_post_with_author(client: AsyncClient) -> None:
 
 
 @pytest.mark.asyncio
+async def test_list_posts_invalid_sort_by(client: AsyncClient) -> None:
+    response = await client.get("/api/v1/posts?sort_by=not_a_field")
+
+    assert response.status_code == 422
+
+
+@pytest.mark.asyncio
 async def test_create_post_user_not_found(client: AsyncClient) -> None:
     mock_service = AsyncMock(spec=PostService)
     mock_service.create_post.side_effect = NotFoundError("User 999 not found")

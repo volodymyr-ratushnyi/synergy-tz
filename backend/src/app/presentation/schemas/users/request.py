@@ -1,4 +1,15 @@
+from enum import Enum
+
 from pydantic import BaseModel, Field
+
+
+class UserSortField(str, Enum):
+    external_id = "external_id"
+    first_name = "first_name"
+    last_name = "last_name"
+    email = "email"
+    username = "username"
+    role = "role"
 
 
 class CreateUserRequest(BaseModel):
